@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Graph Example</title>
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="barGraph" width="400" height="300"></canvas>
+
+  <script>
+    function generateBarGraph(data, labels) {
+      var canvas = document.getElementById('barGraph');
+      var ctx = canvas.getContext('2d');
+
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      var barWidth = 40;
+      var spacing = 20;
+      var startX = 50;
+
+      for (var i = 0; i < data.length; i++) {
+        var barHeight = data[i] * 5; // Adjust the multiplier for a better visual representation
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(startX, canvas.height - barHeight, barWidth, barHeight);
+
+        // Display labels below each bar
+        ctx.fillStyle = 'black';
+        ctx.fillText(labels[i], startX + barWidth / 2 - 10, canvas.height - 5);
+
+        startX += barWidth + spacing;
+      }
+    }
+
+    // Example usage:
+    var dataValues = [10, 24, 15, 30, 20];
+    var xLabels = ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'];
+
+    generateBarGraph(dataValues, xLabels);
+  </script>
+  </body>
+  </html>
